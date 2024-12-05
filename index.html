@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lista de Videos Modal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .folder-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .folder {
+            cursor: pointer;
+            text-align: center;
+            margin: 10px;
+            width: calc(33.33% - 20px);
+            position: relative;
+            color: #FFFFFF;
+        }
+
+        .folder img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .folder:hover img {
+            transform: scale(1.05);
+        }
+
+        .modal, .inner-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #0, 0, 0, 0;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .modal-content img {
+            width: 50%;
+            display: block;
+            margin: 0 auto 15px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #ffffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .modal-info {
+            font-size: 15px;
+            color: #FFFFFF;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .modal-info h3 {
+            color: #ffcc00;
+            font-size: 22px;
+            white-space: nowrap;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .modal-info p {
+            margin: 8px 0;
+        }
+
+        .icono {
+            color: #FFFFFF;
+            margin-right: 8px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            color: #FFFFFF;
+            background-color: #FF0000;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+            display: inline-block;
+            white-space: nowrap;
+            width: auto;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #FF0000;
+        }
+
+        .video-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="folder-container">
+    <!-- Miniserie #1 -->
+    <div class="folder" onclick="openModal('modalM1')">
+        <img src="https://image.tmdb.org/t/p/original/kGiJJJpwWzDeUoyyIFOqeDz43sI.jpg" alt="La Señal">
+    </div>
+    <!-- Miniserie #2 -->
+        <div class="folder" onclick="openModal('modalM2')">
+        <img src="https://image.tmdb.org/t/p/original/gKyXUkyKRg9LdZzZWRzk0eKD5HJ.jpg" alt="Por Mandato Del Cielo">    
+</div>
+    <!-- Miniserie #3 -->
+<div class="folder" onclick="openModal('modalM3')">
+    <img src="https://image.tmdb.org/t/p/original/qNOYmU6JYMeu2I0xOX9pgCBOBXi.jpg" alt="La Ciudad Es Nuestra">
+</div>
+    <!-- Miniserie #4 -->
+<div class="folder" onclick="openModal('modalM4')">
+    <img src="https://image.tmdb.org/t/p/original/e5MUdXRjl90Up5dAEdvsGs4zAAS.jpg" alt="Bebé Reno">    
+</div>
+    <!-- Miniserie #5 -->
+<div class="folder" onclick="openModal('modalM5')">
+    <img src="https://image.tmdb.org/t/p/original/wlsivaJuU6HScCFKcgv1cgtdmQt.jpg" alt="Secretos de un matrimonio">    
+</div>
+    <!-- Miniserie #6 -->
+<div class="folder" onclick="openModal('modalM6')">
+    <img src="https://image.tmdb.org/t/p/original/6QeR0OoO8lqsLG2c6hzVPSu9bVF.jpg" alt="Asalto al banco central">    
+</div>
+    <!-- Miniserie #7 -->
+<div class="folder" onclick="openModal('modalM7')">
+    <img src="https://image.tmdb.org/t/p/original/tEEOa1XUpZMrynIMidfr0JK7IG2.jpg" alt="Gambito de dama">    
+</div>
+    <!-- Miniserie #8 -->
+<div class="folder" onclick="openModal('modalM8')">
+    <img src="https://image.tmdb.org/t/p/original/pTqSPNTNWmWU5MxVn3gw8tZh0CW.jpg" alt="La luz que no puedes ver">    
+</div>
+    <!-- Miniserie #9 -->
+<div class="folder" onclick="openModal('modalM9')">
+    <img src="https://image.tmdb.org/t/p/original/n89Fg4T6qrBuSBr2stIPWfgAq1F.jpg" alt="Sweetpea">    
+</div>
+
+<!-- MINISERIE "LA SEÑAL" -->
+
+<!-- MODAL -->
+
+<div id="modalM1" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM1')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/kGiJJJpwWzDeUoyyIFOqeDz43sI.jpg" alt="Poster de La Señal">
+        <h3>LA SEÑAL</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2024</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Sci-Fi & Fantasy, Drama, Misterio</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 4</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> Tras la desaparición de una astronauta, su familia emprende una búsqueda frenética de respuestas. Pero cuanto más indagan, mayor es la amenaza que se cierne sobre ellos y el mundo.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#LST1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#LST1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#LST1')">×</span>
+        <div class="video-buttons">
+            <!-- Enlaces que se abren en nueva ventana -->
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9obHN3aXNoLmNvbS9lL2h2c21pbWszNm1uYw==" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9obHN3aXNoLmNvbS9lL2dmMGZnZTl2YXRwMg==" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9obHN3aXNoLmNvbS9lL20zd3FyMHAxaDdhYg==" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9obHN3aXNoLmNvbS9lL2tqdHdvbjJyZHQ4Zw==" class="button" target="_blank">Episodio 4</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "POR MANDATO DEL CIELO" -->
+
+<!-- MODAL -->
+
+<div id="modalM2" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM2')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/gKyXUkyKRg9LdZzZWRzk0eKD5HJ.jpg" alt="Poster de Por Mandato Del Cielo">
+        <h3>POR MANDATO DEL CIELO</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2022</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Crimen, Drama, Misterio</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 7</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> La fe de un devoto detective se pone a prueba mientras investiga un brutal asesinato que parece estar relacionado con la espiral de una estimada familia de Utah hacia el fundamentalismo SUD y su desconfianza en el gobierno.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#PMDCT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#PMDCT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#PMDCT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS8wYzB3MXRwNjl4N2Y=" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9jbWp0cGhsNHVneDE=" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS8xYTZ5MGxwaDN2Y3Y=" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9wYnd0cDdyNmZpOWw=" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9mODkweHB6ZHB1dTY=" class="button" target="_blank">Episodio 5</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS96OTdrcHNnbTI0cHo=" class="button" target="_blank">Episodio 6</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS80M3h0NnYwb3JtZTg=" class="button" target="_blank">Episodio 7</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "LA CIUDAD ES NUESTRA" -->
+
+<!-- MODAL -->
+
+<div id="modalM3" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM3')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/qNOYmU6JYMeu2I0xOX9pgCBOBXi.jpg" alt="Poster de La Ciudad es nuestra">
+        <h3>LA CIUDAD ES NUESTRA</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2022</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Crimen, Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 6</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> Crónica del auge y caída del GTTF, el cuerpo especial de la policía de Baltimore dedicado a rastrear armas, una unidad corrupta que habitualmente cometía delitos de fraude, extorsión y reventa de drogas previamente confiscadas.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#LCENT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#LCENT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#LCENT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS95NnJkaWRxbXY0N3Y=" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9neHlkMm9rd2YyOW0=" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS8yNG1lbnF1d2IzMWo=" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9zODM0N2g3N3p6MnA=" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9ucWI2ejQyYmoxMnE=" class="button" target="_blank">Episodio 5</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS81MjVqcnNieHkzdWI=" class="button" target="_blank">Episodio 6</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "BEBÉ RENO" -->
+
+<!-- MODAL -->
+
+<div id="modalM4" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM4')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/e5MUdXRjl90Up5dAEdvsGs4zAAS.jpg" alt="Poster de Baby Reindeer">
+        <h3>BEBÉ RENO</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2024</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 7</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> Cuando un comediante en apuros le muestra un poco de amabilidad a una mujer vulnerable, se desata una obsesión enfermiza que amenaza con destruir las vidas de ambos.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#BRT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#BRT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#BRT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9xOWZwemk4Zm4xcm4=" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9jMTU3bzhydjJkZGI=" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9qa3I1cWtsYWJqa3I=" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS8zM2hmYnZjeHdvd2M=" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9idHQ5NWFldnZwemo=" class="button" target="_blank">Episodio 5</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9sanhoeHB5ZGR1YXQ=" class="button" target="_blank">Episodio 6</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS83MHJ2a3hpYjZiMzc=" class="button" target="_blank">Episodio 7</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "SECRETOS DE UN MATRIMONIO" -->
+
+<!-- MODAL -->
+
+<div id="modalM5" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM5')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/wlsivaJuU6HScCFKcgv1cgtdmQt.jpg" alt="Poster de Secretos de un matrimonio">
+        <h3>SECRETOS DE UN MATRIMONIO</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2021</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 5</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> Reexamina la representación icónica del amor, el odio, el deseo, la monogamia, el matrimonio y el divorcio del original a través de la lente de una pareja estadounidense contemporánea, interpretada por Oscar Isaac y Jessica Chastain.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#SDUMT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#SDUMT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#SDUMT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9lN2RwYmR0Y2hmZDA=" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9pMm55cG53djl0MGQ=" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9rYTFkN2d2aGVtbGY=" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS85bWcybHpsOHVqcTI=" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS81bzM4eGFwbTVtdzA=" class="button" target="_blank">Episodio 5</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "ASALTO AL BANCO CENTRAL" -->
+
+<!-- MODAL -->
+
+<div id="modalM6" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM6')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/6QeR0OoO8lqsLG2c6hzVPSu9bVF.jpg" alt="Poster de Asalto al banco central">
+        <h3>ASALTO AL BANCO CENTRAL</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2024</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Crimen, Drama, Action & Adventure</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 5</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> España, 1981. Un grupo de hombres armados asalta un banco y toma cientos de rehenes. Una periodista compite con las autoridades para descubrir el verdadero motivo del golpe.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#AABCT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#AABCT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#AABCT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9pN3l3eG94Yjl3cXk=" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9mOGhpYjN2NTBhdWk=" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9id3ZkNTZjcGhiNzg=" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9iaTZjc3Ria2x5cWs=" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS8xM2VxMmM3bm15eHQ=" class="button" target="_blank">Episodio 5</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "GAMBITO DE DAMA" -->
+
+<!-- MODAL -->
+
+<div id="modalM7" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM7')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/tEEOa1XUpZMrynIMidfr0JK7IG2.jpg" alt="Poster de Gambito de dama">
+        <h3>GAMBITO DE DAMA</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2020</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 7</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> En los cincuenta, una joven de un orfanato descubre que tiene un increíble don para el ajedrez y recorre el arduo camino a la fama mientras lucha contra las adicciones.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#GDDT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#GDDT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#GDDT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL3FqcGZ4bjF1Y2thZQ==" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lLzJvN3Jwc3VvYzdmeQ==" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lLzNwbzU1NzRzaWdzcA==" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL2Q3ZnY0aG44YWd5eg==" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL2psMzhuazJnaHBlbg==" class="button" target="_blank">Episodio 5</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL3lnaHFnNTV3bTcxNg==" class="button" target="_blank">Episodio 6</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL3VzOGplcGNuczhwbw==" class="button" target="_blank">Episodio 7</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "LA LUZ QUE NO PUEDES VER" -->
+
+<!-- MODAL -->
+
+<div id="modalM8" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM8')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/pTqSPNTNWmWU5MxVn3gw8tZh0CW.jpg" alt="Poster de La luz que no puedes ver">
+        <h3>LA LUZ QUE NO PUEDES VER</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2023</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 4</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> En los últimos días de la II Guerra Mundial, los caminos de una adolescente francesa ciega y un soldado alemán se entrecruzan. Basada en la galardonada novela de Anthony Doerr.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#LLQNPVT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#LLQNPVT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#LLQNPVT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lLzQ5cnU3cjQ5MHAyeA==" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL2xhaG9heWF1dTgybg==" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lL2V5ejUwM2U2ODlseA==" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9pcGxheWVyaGxzLmNvbS9lLzJ6Z2k2bDA0aHFpcA==" class="button" target="_blank">Episodio 4</a>
+        </div>
+    </div>
+</div>
+
+<!-- MINISERIE "SWEETPEA" -->
+
+<!-- MODAL -->
+
+<div id="modalM9" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalM9')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/n89Fg4T6qrBuSBr2stIPWfgAq1F.jpg" alt="Poster de Sweetpea">
+        <h3>SWEETPEA</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2024</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Comedia, Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 6</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Continúa</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> Rhiannon Lewis no causa mucha impresión – la gente se cruza con ella y no la mira dos veces hasta que es llevada al extremo y pierde el control. La vida de Rhiannon se transforma, pero ¿puede guardar su secreto mortal?</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalM#SWEETPEAT1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalM#SWEETPEAT1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalM#SWEETPEAT1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS85aXo1Z2lsaWM5M2g=" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS82NnVieWM5eTY3OW8=" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS9nNzNrNXAwYjUyZno=" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS82cHduY3NsbHpzejU=" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS82NGk0am9objh2eDI=" class="button" target="_blank">Episodio 5</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9zd2lzaHNydi5jb20vZS8wM2M0N3RoMjdjaHc=" class="button" target="_blank">Episodio 6</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+(function() {
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    function openInnerModal(innerModalId) {
+        document.getElementById(innerModalId).style.display = "block";
+    }
+
+    function closeInnerModal(innerModalId) {
+        document.getElementById(innerModalId).style.display = "none";
+    }
+
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+    window.openInnerModal = openInnerModal;
+    window.closeInnerModal = closeInnerModal;
+})();
+</script>
+
+</body>
+</html>
