@@ -142,12 +142,12 @@
 
 <div class="folder-container">
     <!-- Miniserie #1 -->
-    <div class="folder" onclick="openModal('modalM1')">
-        <img src="https://image.tmdb.org/t/p/original/kGiJJJpwWzDeUoyyIFOqeDz43sI.jpg" alt="La Señal">
+<div class="folder" onclick="openModal('modalM1')">
+    <img src="https://image.tmdb.org/t/p/original/kGiJJJpwWzDeUoyyIFOqeDz43sI.jpg" alt="La Señal">
     </div>
     <!-- Miniserie #2 -->
-        <div class="folder" onclick="openModal('modalM2')">
-        <img src="https://image.tmdb.org/t/p/original/gKyXUkyKRg9LdZzZWRzk0eKD5HJ.jpg" alt="Por Mandato Del Cielo">    
+<div class="folder" onclick="openModal('modalM2')">
+    <img src="https://image.tmdb.org/t/p/original/gKyXUkyKRg9LdZzZWRzk0eKD5HJ.jpg" alt="Por Mandato Del Cielo">    
 </div>
     <!-- Miniserie #3 -->
 <div class="folder" onclick="openModal('modalM3')">
@@ -180,6 +180,10 @@
     <!-- Miniserie #10 -->
 <div class="folder" onclick="openModal('modalM10')">
     <img src="https://image.tmdb.org/t/p/original/ksDDvTxUp07yu8FdOAXwJeyTilu.jpg" alt="The Small Light">    
+</div>
+    <!-- Miniserie #11 -->
+<div class="folder" onclick="openModal('modalLaReinaCarlota')">
+    <img src="https://image.tmdb.org/t/p/original/eR7btjpvOugivUYSoEsD2iAOYsJ.jpg" alt="La Reina Carlota: Una Historia de los Bridgerton">
 </div>
 
 <!-- MINISERIE "LA SEÑAL" -->
@@ -572,7 +576,44 @@
     </div>
 </div>
 
+<!-- MINISERIE "LA REINA CARLOTA: UNA HISTORIA DE LOS BRIDGERTON" -->
 
+<!-- MODAL -->
+
+<div id="modalLaReinaCarlota" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalLaReinaCarlota')">×</span>
+        <img src="https://image.tmdb.org/t/p/original/eR7btjpvOugivUYSoEsD2iAOYsJ.jpg" alt="La Reina Carlota: Una Historia de los Bridgerton">
+        <h3>LA REINA CARLOTA: UNA HISTORIA DE LOS BRIDGERTON</h3>
+        <div class="modal-info">
+            <p><i class="fas fa-calendar-alt icono"></i><strong>Año:</strong> 2023</p>
+            <p><i class="fas fa-film icono"></i><strong>Género:</strong> Drama</p>
+            <p><i class="fas fa-tv icono"></i><strong>Temporadas:</strong> 1</p>
+            <p><i class="fas fa-list icono"></i><strong>Episodios:</strong> 6</p>
+            <p><i class="fas fa-signal icono"></i><strong>Estado:</strong> Finalizada</p>
+            <p><i class="fas fa-info-circle icono"></i><strong>Sinopsis:</strong> La joven reina asciende a la prominencia y el poder mientras que su matrimonio con el rey Jorge da paso a una gran historia de amor.</p>
+            <div class="video-buttons">
+                <span class="button" onclick="openInnerModal('innerModalLaReinaCarlotaS1')">TEMPORADA 1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPORADA 1 -->
+
+<div id="innerModalLaReinaCarlotaS1" class="inner-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeInnerModal('innerModalLaReinaCarlotaS1')">×</span>
+        <div class="video-buttons">
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9naGJyaXNrLmNvbS9lL290Y2p3aHB0bzlpcA==" class="button" target="_blank">Episodio 1</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9naGJyaXNrLmNvbS9lL3Nlbm45cmI1NG00eA==" class="button" target="_blank">Episodio 2</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9naGJyaXNrLmNvbS9lLzh5NnJzcG4xZmR2bA==" class="button" target="_blank">Episodio 3</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9naGJyaXNrLmNvbS9lL2s1aHo1NmM4ZjM5Zw==" class="button" target="_blank">Episodio 4</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9naGJyaXNrLmNvbS9lL2J4eGlldHpvdWk3bw==" class="button" target="_blank">Episodio 5</a>
+            <a href="https://vpn-movie-ofc.blogspot.com/2024/05/embed_27.html?r=aHR0cHM6Ly9naGJyaXNrLmNvbS9lL283bjVndjg4NHd5cw==" class="button" target="_blank">Episodio 6</a>
+        </div>
+    </div>
+</div>
 
 
 
@@ -604,4 +645,4 @@
 </script>
 
 </body>
-</html>
+                </html>
